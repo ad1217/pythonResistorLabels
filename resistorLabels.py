@@ -15,18 +15,18 @@ colors = {0:  "black",
           -1: "silver",
           -2: "gold"}
 
-htmlColors = {"black": "black",
-              "brown": "brown",
-              "red": "red",
+htmlColors = {"black":  "black",
+              "brown":  "brown",
+              "red":    "red",
               "orange": "orange",
               "yellow": "yellow",
-              "green": "green",
-              "blue": "blue",
+              "green":  "green",
+              "blue":   "blue",
               "violet": "violet",
-              "grey": "grey",
-              "white": "white",
+              "grey":   "grey",
+              "white":  "white",
               "silver": "silver",
-              "gold": "gold"}
+              "gold":   "gold"}
 
 suffixes = {1: "K",
             2: "M",
