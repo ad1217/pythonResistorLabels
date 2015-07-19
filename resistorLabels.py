@@ -69,6 +69,7 @@ def parse (inp):
         color = inp.split(" ")
         value = int((invcolors[color[0]] * 10 + invcolors[color[1]]) * pow(10, invcolors[color[2]]))
         name  = getName(value)
+
     else:
         print("Invalid input: " + inp)
 
