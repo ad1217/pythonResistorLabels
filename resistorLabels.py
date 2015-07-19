@@ -114,8 +114,9 @@ def svgWrite(resistors):
 
     f.write("</svg>\n")
 
-test = "10K" #input("input :")
-resistor = parse(test)
-print(resistor)
-resistors = ["10K", "100K"]
-svgWrite([parse(x) for x in resistors])
+resistors = [10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82]
+resistors += [x / 10   for x in resistors]
+resistors += [int(x * 10)   for x in resistors]
+resistors += [int(round(x * 100, -1))  for x in resistors]
+resistors += [int(x * 1000) for x in resistors]
+svgWrite([parse(str(x)) for x in resistors])
