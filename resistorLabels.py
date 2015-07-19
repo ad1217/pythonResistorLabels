@@ -47,15 +47,10 @@ def parse (inp):
     value = 0
     name = ""
     color = []
-    if re.match("\d\d?0*$", inp):
-        value = int(inp)
-        name  = getName(value)
-        color = getColor(int(inp[0]), int(inp[1]) if len(inp) > 1 else 0, value)
-
-    elif re.match("\d\.\d?0*$", inp):
+    if re.match("\d\.?\d?0*$", inp):
         value = float(inp)
         name  = getName(value)
-        color = getColor(int(inp[0]), int(inp[2]), value)
+        color = getColor(int(inp[0]), 0 if len(inp) < 2 else int(inp[1]) if inp[1] != "." else int(inp[2]), value)
 
     elif re.match("\d\.?\d?0?[KMG]", inp):
         invsuffixes = dict((v, k) for k, v in suffixes.items())
