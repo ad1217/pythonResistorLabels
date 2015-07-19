@@ -12,8 +12,8 @@ colors = {0 : "black",
           7 : "violet",
           8 : "grey",
           9 : "white",
-          -1: "silver",
-          -2: "gold"}
+          -1: "gold",
+          -2: "silver"}
 
 htmlColors = {"black" : "black",
               "brown" : "brown",
