@@ -35,9 +35,9 @@ suffixes = {1: "K",
 def getName (val):
     pThousand = int(math.log(val, 1000))
     if pThousand in suffixes:
-        return str(int(val/pow(1000, pThousand))) + suffixes[pThousand]
+        return str(val/pow(1000, pThousand)).replace(".0", "") + suffixes[pThousand]
     else:
-        return str(val)
+        return str(val).replace(".0", "")
 
 def getColor (firstDigit, secondDigit, val):
     pTen = int(math.log10(val/(firstDigit*10+secondDigit)))
