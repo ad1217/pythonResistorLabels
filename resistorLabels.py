@@ -74,13 +74,22 @@ def parse (inp):
 def svgWrite(resistors):
     width   = 5
     height  = 5
-    spacing = 1
+    spacing = 5
+
+    xInitialOffset = 10
+    yInitialOffset = 10
+
+    xOffset = xInitialOffset
+    yOffset = yInitialOffset
+
+    resPerLine = math.floor((215.9 - (xInitialOffset * 2)) / (width * 3 + spacing))
+
     f=open("out.svg", "w")
     f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%imm" height="%imm">\n' %(width * 3 * len(resistors) + spacing * (len(resistors) - 1), height * 2))
     f.write('"  <rect x="0mm" y="0mm" width="%imm" height="%imm" fill="white"/>\n"' %(width * 3 * len(resistors) + spacing * (len(resistors) - 1), height * 2))
 
-    xOffset = 0
-    yOffset = 0
+    count = 0
+    line = 0
     for res in resistors:
         blockOffset = 0
         for color in res["color"]:
@@ -88,7 +97,13 @@ def svgWrite(resistors):
                     %(xOffset + blockOffset, yOffset, width, height, htmlColors[color]))
             blockOffset += width
         f.write('  <text x="%fmm" y="%imm" text-anchor="middle" font-size="%fmm" font-family="sans">%s</text>\n\n' %(xOffset + width * 3 / 2, yOffset + height * 2, height/1.2, "R" + res["name"]))
-        xOffset = width * 3 + spacing
+        xOffset += width * 3 + spacing
+        count += 1
+        if (count % resPerLine == 0):
+            line +=1
+            xOffset = xInitialOffset
+
+        yOffset = yInitialOffset + line * (width * 2 + spacing)
 
     f.write("</svg>\n")
 
