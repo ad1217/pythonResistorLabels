@@ -39,6 +39,10 @@ def getName (val):
     else:
         return str(val)
 
+def getColor (firstDigit, secondDigit, val):
+    pTen = int(math.log10(val/(firstDigit*10+secondDigit)))
+    return [colors[firstDigit], colors[secondDigit], colors[pTen]]
+
 def parse (inp):
     value = 0
     name = ""
@@ -46,13 +50,15 @@ def parse (inp):
     if re.match("\d\d?0*$", inp):
         value = int(inp)
         name  = getName(value)
-        color = [colors[int(inp[0])], colors[int(inp[1])], colors[int(math.log(value, 10))-1]]
+        color = getColor(int(inp[0]), int(inp[1]) if len(inp) > 1 else 0, value)
+
     elif re.match("\d\.?\d?0?[KMG]", inp):
         invsuffixes = dict((v, k) for k, v in suffixes.items())
         pTen  = invsuffixes[inp[-1]] * 3
         value = int(inp[:-1]) * pow(10, pTen)
         name  = getName(value)
-        color = [colors[int(inp[0])], colors[int(inp[1])], colors[int(math.log(value, 10))-1]]
+        color = getColors(int(inp[0]), int(inp[1]), value)
+
     elif re.match("[a-z]+ [a-z]+ [a-z]+$", inp):
         invcolors = dict((v, k) for k, v in colors.items())
         color = inp.split(" ")
