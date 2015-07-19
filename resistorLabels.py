@@ -90,8 +90,10 @@ def svgWrite(resistors):
     resPerLine = math.floor((215.9 - (xInitialOffset * 2)) / (width * 3 + spacing))
 
     f=open("out.svg", "w")
-    f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%imm" height="%imm">\n' %(width * 3 * len(resistors) + spacing * (len(resistors) - 1), height * 2))
-    f.write('"  <rect x="0mm" y="0mm" width="%imm" height="%imm" fill="white"/>\n"' %(width * 3 * len(resistors) + spacing * (len(resistors) - 1), height * 2))
+    f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="8.5in" height="11in">\n')
+    f.write('"  <rect x="0mm" y="0mm" width="8.5in" height="11in" fill="white"/>\n"')
+    #f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%imm" height="%imm">\n' %(width * 3 * len(resistors) + spacing * (len(resistors) - 1), height * 2))
+    #f.write('"  <rect x="0mm" y="0mm" width="%imm" height="%imm" fill="white"/>\n"' %(width * 3 * len(resistors) + spacing * (len(resistors) - 1), height * 2))
 
     count = 0
     line = 0
