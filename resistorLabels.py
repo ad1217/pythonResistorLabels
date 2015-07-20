@@ -93,22 +93,17 @@ def svgWrite(resistors):
     f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%fmm" height="%fmm">\n' %(pageX, pageY))
     f.write('  <rect x="0" y="0" width="%fmm" height="%fmm" fill="white"/>\n' %(pageX, pageY))
 
-    count = 0
-    line = 0
-    for res in resistors:
+    for ii, res in enumerate(resistors):
+        xOffset = xMargin + (ii % resPerLine) * (width * 3 + spacing)
+        yOffset = yMargin + math.floor(ii / resPerLine) * (width * 2 + spacing)
+
         blockOffset = 0
         for color in res["color"]:
             f.write('  <rect x="%imm" y="%imm" width="%imm" height="%imm" fill="%s"/>\n'
                     %(xOffset + blockOffset, yOffset, width, height, htmlColors[color]))
             blockOffset += width
-        f.write('  <text x="%fmm" y="%imm" text-anchor="middle" font-size="%fmm" font-family="sans">%s</text>\n\n' %(xOffset + width * 3 / 2, yOffset + height * 2, height/1.2, "R" + res["name"]))
-        xOffset += width * 3 + spacing
-        count += 1
-        if (count % resPerLine == 0):
-            line +=1
-            xOffset = xMargin
-
-        yOffset = yMargin + line * (width * 2 + spacing)
+        f.write('  <text x="%fmm" y="%imm" text-anchor="middle" font-size="%fmm" font-family="sans">%s</text>\n\n'
+                %(xOffset + width * 3 / 2, yOffset + height * 2, height/1.2, "R" + res["name"]))
 
     f.write("</svg>\n")
 
