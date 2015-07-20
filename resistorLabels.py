@@ -77,19 +77,21 @@ def svgWrite(resistors):
     height  = 5
     spacing = 5
 
-    xInitialOffset = 10
-    yInitialOffset = 10
+    pageX = 215.9
+    pageY = 279.4
 
-    xOffset = xInitialOffset
-    yOffset = yInitialOffset
+    xMargin = 20
+    yMargin = 0
 
-    resPerLine = math.floor((215.9 - (xInitialOffset * 2)) / (width * 3 + spacing))
+
+    xOffset = xMargin
+    yOffset = yMargin
+
+    resPerLine = math.floor((pageX - (xMargin * 2)) / (width * 3 + spacing))
 
     f=open("out.svg", "w")
-    f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="8.5in" height="11in">\n')
-    f.write('"  <rect x="0mm" y="0mm" width="8.5in" height="11in" fill="white"/>\n"')
-    #f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%imm" height="%imm">\n' %(width * 3 * len(resistors) + spacing * (len(resistors) - 1), height * 2))
-    #f.write('"  <rect x="0mm" y="0mm" width="%imm" height="%imm" fill="white"/>\n"' %(width * 3 * len(resistors) + spacing * (len(resistors) - 1), height * 2))
+    f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%fmm" height="%fmm">\n' %(pageX, pageY))
+    f.write('  <rect x="0" y="0" width="%fmm" height="%fmm" fill="white"/>\n' %(pageX, pageY))
 
     count = 0
     line = 0
@@ -104,9 +106,9 @@ def svgWrite(resistors):
         count += 1
         if (count % resPerLine == 0):
             line +=1
-            xOffset = xInitialOffset
+            xOffset = xMargin
 
-        yOffset = yInitialOffset + line * (width * 2 + spacing)
+        yOffset = yMargin + line * (width * 2 + spacing)
 
     f.write("</svg>\n")
 
