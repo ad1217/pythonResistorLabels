@@ -73,21 +73,21 @@ def parse (inp):
             "color": color}
 
 def svgWrite(resistors):
-    width   = 5
-    height  = 5
-    spacing = 5
+    width        = 5
+    height       = 5
+    spacing      = 5
 
-    pageX = 215.9
-    pageY = 279.4
+    pageX        = 215.9
+    pageY        = 279.4
 
-    xMargin = 20
-    yMargin = 0
+    xMargin      = 20
+    yMargin      = 0
 
 
-    xOffset = xMargin
-    yOffset = yMargin
+    xOffset      = xMargin
+    yOffset      = yMargin
 
-    resPerLine = math.floor((pageX - (xMargin * 2)) / (width * 3 + spacing))
+    resPerLine   = math.floor((pageX - (xMargin * 2)) / (width * 3 + spacing))
 
     f=open("out.svg", "w")
     f.write('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="%fmm" height="%fmm">\n' %(pageX, pageY))
