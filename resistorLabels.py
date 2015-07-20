@@ -110,9 +110,10 @@ def svgWrite(resistors):
 
     f.write("</svg>\n")
 
-resistors = [10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82]
-resistors += [x / 10   for x in resistors]
-resistors += [int(x * 10)   for x in resistors]
-resistors += [int(round(x * 100, -1))  for x in resistors]
-resistors += [int(x * 1000) for x in resistors]
+e12 = [10, 12, 15, 18, 22, 27, 33, 39, 47, 56, 68, 82]
+resistors = e12.copy()
+resistors += [x / 10  for x in e12]
+resistors += [int(x * 10) for x in e12]
+resistors += [int(round(x * 100, -1)) for x in e12]
+resistors += [int(x * 1000) for x in e12]
 svgWrite([parse(str(x)) for x in resistors])
